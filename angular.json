@@ -55,7 +55,7 @@
               }
             ],
             "styles": [
-              "src/theme.less",
+              "src/theme.scss",
               "src/styles/styles.scss"
             ],
             "scripts": []

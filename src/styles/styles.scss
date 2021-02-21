@@ -37,3 +37,10 @@ nz-content {
 .anticon-eye-invisible {
   color: #1890ff;
 }
+
+.ant-menu-item {
+  margin: 0 10px !important;
+  &:focus {
+    outline: none;
+  }
+}

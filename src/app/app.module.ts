@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +18,6 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
-import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
 import { RegisterPageComponent } from './auth/register-page/register-page.component';
 import { VideoPageComponent } from './pages/video-page/video-page.component';
 import { FavoritesPageComponent } from './pages/favorites-page/favorites-page.component';

@@ -6,9 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./auth-layout.component.scss']
 })
 export class AuthLayoutComponent implements OnInit {
-  public passwordVisible = false;
-  public password?: string;
-  public loading = false;
+
   constructor() {
   }
 

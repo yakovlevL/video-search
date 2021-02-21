@@ -10,9 +10,9 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  @Input() password: boolean;
-  @Input() passwordVisible: boolean;
-  @Input() loading: boolean;
+  password: boolean;
+  passwordVisible: boolean;
+  loading: boolean;
   form: FormGroup;
   message: string;
 
