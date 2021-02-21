@@ -31,6 +31,8 @@ import { VideoGridCardComponent } from './components/cards/video-grid-card/video
 import { VideoListCardComponent } from './components/cards/video-list-card/video-list-card.component';
 import {NzCardModule} from 'ng-zorro-antd/card';
 import {NzAvatarModule} from 'ng-zorro-antd/avatar';
+import {SharedModule} from './modules/shared.module';
+import {NzAlertModule} from 'ng-zorro-antd/alert';
 
 registerLocaleData(ru);
 
@@ -64,7 +66,9 @@ registerLocaleData(ru);
     NzFormModule,
     NzSpaceModule,
     NzCardModule,
-    NzAvatarModule
+    NzAvatarModule,
+    SharedModule,
+    NzAlertModule
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]

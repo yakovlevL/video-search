@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {LayoutComponent} from './components/layout/layout.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {VideoPageComponent} from './pages/video-page/video-page.component';
 import {FavoritesPageComponent} from './pages/favorites-page/favorites-page.component';
 import {AuthLayoutComponent} from './auth/auth-layout/auth-layout.component';
+import {AuthGuard} from './services/auth.guard';
 
 const routes: Routes = [
   {
     path: '', component: LayoutComponent, children: [
-      {path: '', redirectTo: '/', pathMatch: 'full'},
-      {path: '', component: HomePageComponent},
-      {path: 'video/:id', component: VideoPageComponent},
-      {path: 'favorites', component: FavoritesPageComponent}
+      {path: '', redirectTo: '/', pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: '', component: HomePageComponent, canActivate: [AuthGuard]},
+      {path: 'video/:id', component: VideoPageComponent, canActivate: [AuthGuard]},
+      {path: 'favorites', component: FavoritesPageComponent, canActivate: [AuthGuard]}
     ]
   },
   {
@@ -24,4 +25,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -6,12 +6,12 @@
           <a href="/"><i nz-icon nzType="bug" nzTheme="outline"></i></a>
         </div>
         <ul nz-menu nzTheme="light" nzMode="horizontal" class="header-nav">
-          <li nz-menu-item nzSelected>Поиск</li>
-          <li nz-menu-item>Избранное</li>
+          <li nz-menu-item nzSelected [routerLink]="['/']">Поиск</li>
+          <li nz-menu-item [routerLink]="['favorites']">Избранное</li>
         </ul>
       </div>
       <div class="logout">
-        <a nz-button nzType="link">Выйти</a>
+        <a href="#" (click)="logout($event)" nz-button nzType="link">Выйти</a>
       </div>
     </div>
   </div>

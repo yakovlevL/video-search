@@ -25,3 +25,15 @@ nz-content {
   align-items: center;
   flex-direction: column;
 }
+
+.ant-input-suffix {
+  cursor: pointer;
+  transition: all .3s;
+  &:hover {
+    color: #1890ff;
+  }
+}
+
+.anticon-eye-invisible {
+  color: #1890ff;
+}

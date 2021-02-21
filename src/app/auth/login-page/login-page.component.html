@@ -1,42 +1,67 @@
 <div class="container">
-  <form nz-form class="login-form" >
+  <form nz-form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
 
-<!--    <nz-alert-->
-<!--      *ngIf="auth.error$ | async as error"-->
-<!--      nzType="error"-->
-<!--      style="margin-bottom: 20px"-->
-<!--      nzMessage="{{error}}"></nz-alert>-->
+    <nz-alert
+      *ngIf="auth.error$ | async as error"
+      nzType="error"
+      style="margin-bottom: 20px"
+      nzMessage="{{error}}"></nz-alert>
 
-<!--    <nz-alert-->
-<!--      *ngIf="message"-->
-<!--      nzType="info"-->
-<!--      style="margin-bottom: 20px"-->
-<!--      nzMessage="{{message}}"></nz-alert>-->
     <div class="logo">
-      <nz-avatar [nzShape]="'square'" [nzSize]="64" [nzIcon]="'unlock'"></nz-avatar>
+      <nz-avatar
+        [nzShape]="'square'"
+        [nzSize]="64"
+        [nzIcon]="'unlock'"
+      ></nz-avatar>
     </div>
 
     <h2 nz-typography>Вход</h2>
 
+    <nz-alert
+      *ngIf="message"
+      nzType="info"
+      style="margin-bottom: 20px"
+      nzMessage="{{message}}"></nz-alert>
+
     <nz-form-item>
       <nz-form-control nzErrorTip="Введите корректный адрес электронной почты">
         <nz-input-group nzPrefixIcon="mail">
-          <input type="text" nz-input placeholder="E-mail" />
+          <input
+            formControlName="email"
+            autocomplete="email"
+            type="text"
+            nz-input
+            placeholder="E-mail"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-control nzErrorTip="Минимальная длинна пароля 6 символов">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input placeholder="Пароль" />
+        <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            formControlName="password"
+            autocomplete="current-password"
+            nz-input placeholder="Пароль"
+            [(ngModel)]="password"
+          />
         </nz-input-group>
+        <ng-template #suffixTemplate>
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+             (click)="passwordVisible = !passwordVisible"></i>
+        </ng-template>
+
       </nz-form-control>
     </nz-form-item>
     <button
       nz-button
       class="login-form-button login-form-margin"
+      type="submit"
       [nzType]="'primary'"
+      [disabled]="form.invalid"
+      [nzLoading]="loading"
     >
       Войти
     </button>

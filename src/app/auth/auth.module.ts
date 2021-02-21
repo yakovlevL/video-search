@@ -5,6 +5,8 @@ import {AuthLayoutComponent} from './auth-layout/auth-layout.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
+import {AuthService} from './auth.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -23,10 +25,12 @@ import {NzLayoutModule} from 'ng-zorro-antd/layout';
         ]
       }
     ]),
-    NzLayoutModule
+    NzLayoutModule,
+    HttpClientModule
   ],
   exports: [
     RouterModule
-  ]
+  ],
+  providers: [AuthService]
 })
 export class AuthModule { }

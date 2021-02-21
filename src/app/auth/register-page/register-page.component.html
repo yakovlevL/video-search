@@ -9,7 +9,12 @@
     <nz-form-item>
       <nz-form-control nzErrorTip="Введите корректный адрес электронной почты">
         <nz-input-group nzPrefixIcon="user">
-          <input type="text" nz-input placeholder="Имя пользователя" />  <!--formControlName="email"-->
+          <input
+            type="text"
+            autocomplete="username"
+            nz-input
+            placeholder="Имя пользователя"
+          />  <!--formControlName="email"-->
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
@@ -17,23 +22,43 @@
     <nz-form-item>
       <nz-form-control nzErrorTip="Введите корректный адрес электронной почты">
         <nz-input-group nzPrefixIcon="mail">
-          <input type="email" nz-input placeholder="E-mail" />  <!--formControlName="email"-->
+          <input
+            type="email"
+            autocomplete="email"
+            nz-input
+            placeholder="E-mail"
+          />  <!--formControlName="email"-->
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-control nzErrorTip="Минимальная длинна пароля 6 символов">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input placeholder="Пароль" />
+        <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            autocomplete="new-password"
+            nz-input
+            placeholder="Пароль"
+            [(ngModel)]="password"
+          />
         </nz-input-group>
+        <ng-template #suffixTemplate>
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+        </ng-template>
+
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-control nzErrorTip="Минимальная длинна пароля 6 символов">
         <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input placeholder="Повторите пароль" />
+          <input
+            type="password"
+            autocomplete="new-password"
+            nz-input
+            placeholder="Повторите пароль"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
