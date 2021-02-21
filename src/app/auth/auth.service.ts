@@ -11,11 +11,11 @@ import {IAuthResponse} from '../types/IAuth';
 })
 export class AuthService {
   public error$: Subject<string> = new Subject<string>();
-  url: string = environment.baseUrl + environment.apiKey;
+  signInUrl: string = environment.signInUrl + environment.apiKey;
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient) {
+  }
 
   get token(): string {
     const expiresDate = new Date(localStorage.getItem('fb-token-exp'));
@@ -28,7 +28,7 @@ export class AuthService {
 
   login(user: IUser): Observable<any> {
     user.returnSecureToken = true;
-    return this.http.post(this.url, user)
+    return this.http.post(this.signInUrl, user)
       .pipe(
         tap(this.setToken),
         catchError(this.handleError.bind(this))
