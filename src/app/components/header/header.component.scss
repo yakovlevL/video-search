@@ -1,0 +1,42 @@
+.header {
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &-nav {
+    li {
+      color: #1890ff;
+    }
+    @media all and (max-width: 767px) {
+      display: none;
+    }
+  }
+}
+
+.logo {
+  padding-right: 30px;
+  color: #1890ff;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.ant-layout-header {
+  background-color: #fff;
+  padding: 0;
+}
+
+.container {
+  padding: 0 20px;
+}
+
+@media all and (max-width: 767px) {
+  .ant-btn-link {
+    padding: 0 !important;
+  }
+}

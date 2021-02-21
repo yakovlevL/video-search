@@ -1,0 +1,33 @@
+.filter-panel {
+  padding: 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__switcher {
+    font-size: 1.2rem;
+    i {
+      color: #bebebe;
+      &:last-child {
+        margin-left: .5rem;
+        @media all and (max-width: 345px) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.video {
+  &-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 25%);
+    @media all and (max-width: 890px) {
+      grid-template-columns: repeat(auto-fill, 50%);
+    }
+    @media all and (max-width: 767px) {
+      grid-template-columns: repeat(auto-fill, 100%);
+    }
+  }
+}

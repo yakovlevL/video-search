@@ -1,0 +1,39 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nz-avatar {
+  margin-bottom: 1rem;
+}
+
+.login-form {
+  max-width: 400px;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.container  {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}

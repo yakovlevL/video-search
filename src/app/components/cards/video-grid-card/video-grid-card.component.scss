@@ -1,0 +1,7 @@
+.card {
+  width: 95%;
+  margin-bottom: 1rem;
+  @media all and (max-width: 767px) {
+    width: 100%;
+  }
+}

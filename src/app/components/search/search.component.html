@@ -1,0 +1,27 @@
+<div class="box">
+  <h1 nz-typography>Поиск видео</h1>
+
+  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+    <input type="text" nz-input placeholder="Что хотите посмотреть" />
+  </nz-input-group>
+  <ng-template #suffixButton>
+    <button nz-button nzType="primary" nzSize="large" nzSearch>Найти</button>
+  </ng-template>
+
+  <div class="filter-panel">
+    <div class="filter-panel__text">
+      <span nz-typography>Видео по запросу  «<strong>чем кормить кота</strong>»</span>
+      <span nz-typography nzType="secondary">7230</span>
+    </div>
+    <div class="filter-panel__switcher">
+      <i nz-icon nzType="appstore" nzTheme="outline"></i>
+      <i nz-icon nzType="unordered-list" nzTheme="outline"></i>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <app-video-grid-card></app-video-grid-card>
+    <app-video-grid-card></app-video-grid-card>
+    <app-video-grid-card></app-video-grid-card>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  height: 100%;
+  padding: 0 50px;
+  margin: 0 auto;
+  @media all and (max-width: 767px) {
+    padding: 0 20px;
+  }
+}
+
+nz-content {
+  width: 100%;
+  height: calc(100vh - 66px);
+  background-color: #fff;
+  padding: 2rem 0;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
