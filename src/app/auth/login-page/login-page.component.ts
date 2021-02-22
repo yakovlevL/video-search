@@ -16,6 +16,8 @@ export class LoginPageComponent implements OnInit {
   form: FormGroup;
   message: string;
 
+  authError: any;
+
   constructor(
     public auth: AuthService,
     private router: Router,
@@ -24,11 +26,14 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      if (params['loginAgain']) {
-        this.message = 'Войдите в свою учетную запись';
-      }
+    this.auth.eventAuthError$.subscribe(data => {
+      this.authError = data;
     });
+    // this.route.queryParams.subscribe((params) => {
+    //   if (params['loginAgain']) {
+    //     this.message = 'Войдите в свою учетную запись';
+    //   }
+    // });
     this.form = new FormGroup({
       email: new FormControl(null,
         [
@@ -43,23 +48,25 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  submit(): void {
-    if (this.form.invalid) {
-      return;
-    }
-    this.loading = true;
-    const user: IUser = {
-      email: this.form.value.email,
-      password: this.form.value.password
-    };
+  submit(form): void {
+    this.auth.login(form.value.email, form.value.password);
 
-    this.auth.login(user)
-      .subscribe(() => {
-        this.form.reset();
-        this.router.navigate(['/']);
-        this.loading = false;
-      }, () => {
-        this.loading = false;
-      });
+    // if (this.form.invalid) {
+    //   return;
+    // }
+    // this.loading = true;
+    // const user: IUser = {
+    //   email: this.form.value.email,
+    //   password: this.form.value.password
+    // };
+
+    // this.auth.login(user)
+    //   .subscribe(() => {
+    //     this.form.reset();
+    //     this.router.navigate(['/']);
+    //     this.loading = false;
+    //   }, () => {
+    //     this.loading = false;
+    //   });
   }
 }

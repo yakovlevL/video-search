@@ -32,6 +32,10 @@ import {NzCardModule} from 'ng-zorro-antd/card';
 import {NzAvatarModule} from 'ng-zorro-antd/avatar';
 import {SharedModule} from './modules/shared.module';
 import {NzAlertModule} from 'ng-zorro-antd/alert';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 registerLocaleData(ru);
 
@@ -67,7 +71,10 @@ registerLocaleData(ru);
     NzCardModule,
     NzAvatarModule,
     SharedModule,
-    NzAlertModule
+    NzAlertModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]

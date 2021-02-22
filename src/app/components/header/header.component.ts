@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../auth/auth.service';
+import firebase from 'firebase';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,8 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  user: firebase.User;
+
   constructor(
     private router: Router,
     private auth: AuthService
@@ -16,6 +19,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.auth.getUserState()
+      .subscribe(user => {
+        this.user = user;
+      });
   }
 
   logout(e: Event): void {

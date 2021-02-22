@@ -1,11 +1,11 @@
 <div class="container">
-  <form nz-form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+  <form nz-form class="login-form" [formGroup]="form" (ngSubmit)="submit(form)">
 
     <nz-alert
-      *ngIf="auth.error$ | async as error"
+      *ngIf="authError"
       nzType="error"
       style="margin-bottom: 20px"
-      nzMessage="{{error}}"></nz-alert>
+      nzMessage="{{authError.message}}"></nz-alert>
 
     <div class="logo">
       <nz-avatar

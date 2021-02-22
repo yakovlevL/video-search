@@ -1,5 +1,11 @@
 <div class="container">
-  <form nz-form class="login-form" > <!--[formGroup]="form" (ngSubmit)="submit()"-->
+  <form nz-form class="login-form" [formGroup]="form" (ngSubmit)="createUser(form)">
+
+        <nz-alert
+          *ngIf="authError"
+          nzType="error"
+          style="margin-bottom: 20px"
+          nzMessage="{{authError.message}}"></nz-alert>
 
     <div class="logo">
       <nz-avatar [nzShape]="'square'" [nzSize]="64" [nzIcon]="'user'"></nz-avatar>
@@ -14,7 +20,8 @@
             autocomplete="username"
             nz-input
             placeholder="Имя пользователя"
-          />  <!--formControlName="email"-->
+            formControlName="username"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
@@ -27,7 +34,8 @@
             autocomplete="email"
             nz-input
             placeholder="E-mail"
-          />  <!--formControlName="email"-->
+            formControlName="email"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
@@ -40,7 +48,7 @@
             autocomplete="new-password"
             nz-input
             placeholder="Пароль"
-
+            formControlName="password"
           />
         </nz-input-group>
         <ng-template #suffixTemplate>
@@ -50,23 +58,11 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Минимальная длинна пароля 6 символов">
-        <nz-input-group nzPrefixIcon="lock">
-          <input
-            type="password"
-            autocomplete="new-password"
-            nz-input
-            placeholder="Повторите пароль"
-          />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-
     <button
       nz-button
       class="login-form-button login-form-margin"
       [nzType]="'primary'"
+      type="submit"
     >
       Зарегистрироваться
     </button>
