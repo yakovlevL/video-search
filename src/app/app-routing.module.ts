@@ -4,16 +4,34 @@ import {LayoutComponent} from './components/layout/layout.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {VideoPageComponent} from './pages/video-page/video-page.component';
 import {FavoritesPageComponent} from './pages/favorites-page/favorites-page.component';
-import {AuthLayoutComponent} from './auth/auth-layout/auth-layout.component';
-import {AuthGuard} from './services/auth.guard';
+import {AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['auth', 'login']);
+const redirectLoggedInToAccount = () => redirectLoggedInTo(['/']);
 
 const routes: Routes = [
   {
     path: '', component: LayoutComponent, children: [
-      {path: '', redirectTo: '/', pathMatch: 'full', canActivate: [AuthGuard]},
-      {path: '', component: HomePageComponent, canActivate: [AuthGuard]},
-      {path: 'video/:id', component: VideoPageComponent, canActivate: [AuthGuard]},
-      {path: 'favorites', component: FavoritesPageComponent, canActivate: [AuthGuard]}
+      {
+        path: '',
+        redirectTo: '/',
+        pathMatch: 'full',
+        canActivate: [AngularFireAuthGuard],
+        data: {authGuardPipe: redirectUnauthorizedToHome}
+      },
+      {path: '', component: HomePageComponent, canActivate: [AngularFireAuthGuard], data: {authGuardPipe: redirectUnauthorizedToHome}},
+      {
+        path: 'video/:id',
+        component: VideoPageComponent,
+        canActivate: [AngularFireAuthGuard],
+        data: {authGuardPipe: redirectUnauthorizedToHome}
+      },
+      {
+        path: 'favorites',
+        component: FavoritesPageComponent,
+        canActivate: [AngularFireAuthGuard],
+        data: {authGuardPipe: redirectUnauthorizedToHome}
+      }
     ]
   },
   {

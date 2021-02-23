@@ -9,7 +9,7 @@ import firebase from 'firebase';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  visible = false;
   user: firebase.User;
 
   constructor(
@@ -24,6 +24,12 @@ export class HeaderComponent implements OnInit {
         this.user = user;
       });
   }
+
+  clickMe(): void {
+    this.visible = false;
+  }
+
+  change(value: boolean): void {}
 
   logout(e: Event): void {
     e.preventDefault();

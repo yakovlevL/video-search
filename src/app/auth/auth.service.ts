@@ -9,6 +9,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import firebase from 'firebase';
+import firestore = firebase.firestore;
 
 @Injectable({
   providedIn: 'root'
@@ -19,24 +20,23 @@ export class AuthService {
   private eventAuthError: BehaviorSubject<string> = new BehaviorSubject<string>('');
   eventAuthError$ = this.eventAuthError.asObservable();
   newUser: any; // firebase.User
-
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFirestore,
     private router: Router
-  ) {
-  }
+  ) { }
 
   getUserState(): Observable<firebase.User | null> {
     return this.afAuth.authState;
   }
   // login в сисему
-  login(email: string, password: string) {
+  login(email: string, password: string): void {
     this.afAuth.signInWithEmailAndPassword(email, password)
       .catch(err => {
         this.eventAuthError.next(err);
       })
       .then(userCredential => {
+        console.log(userCredential);
         if (userCredential) {
           this.router.navigate(['/']);
         }
@@ -48,7 +48,7 @@ export class AuthService {
     this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then(userCredential => {
         this.newUser = user;
-        // console.log(userCredential);
+        console.log(userCredential);
         userCredential.user.updateProfile({
           displayName: user.username
         });

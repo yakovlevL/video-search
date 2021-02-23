@@ -10,7 +10,7 @@ import {AuthService} from '../auth.service';
 export class RegisterPageComponent implements OnInit {
   @Input() password;
   @Input() passwordVisible;
-
+  loading: boolean;
   form: FormGroup;
   authError: any;
   constructor(

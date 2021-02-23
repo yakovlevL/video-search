@@ -63,6 +63,8 @@
       class="login-form-button login-form-margin"
       [nzType]="'primary'"
       type="submit"
+      [disabled]="form.invalid"
+      [nzLoading]="loading"
     >
       Зарегистрироваться
     </button>

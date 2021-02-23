@@ -36,6 +36,8 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {NzPopoverModule} from 'ng-zorro-antd/popover';
+import {AngularFireAuthGuardModule} from '@angular/fire/auth-guard';
 
 registerLocaleData(ru);
 
@@ -72,9 +74,11 @@ registerLocaleData(ru);
     NzAvatarModule,
     SharedModule,
     NzAlertModule,
+    NzPopoverModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthGuardModule
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]

@@ -10,9 +10,26 @@
           <li nz-menu-item [routerLink]="['favorites']">Избранное</li>
         </ul>
       </div>
+      <div *ngIf="!user?.emailVerified">
+        <strong>Verified your email!</strong>
+      </div>
       <div class="logout">
-        <span><strong>{{user?.displayName}}</strong></span>
-        <a href="#" (click)="logout($event)" nz-button nzType="link">Выйти</a>
+        <button
+          nz-button
+          nzType="default"
+          nz-popover
+          nzPopoverTitle="{{user?.email}}"
+          [(nzPopoverVisible)]="visible"
+          (nzPopoverVisibleChange)="change($event)"
+          nzPopoverTrigger="click"
+          [nzPopoverContent]="contentTemplate"
+        >
+          {{user?.displayName}}
+        </button>
+        <ng-template #contentTemplate>
+          <a href="#" (click)="logout($event)" nz-button nzType="link">Выйти</a>
+        </ng-template>
+
       </div>
     </div>
   </div>
