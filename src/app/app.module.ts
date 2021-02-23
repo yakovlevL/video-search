@@ -38,6 +38,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {NzPopoverModule} from 'ng-zorro-antd/popover';
 import {AngularFireAuthGuardModule} from '@angular/fire/auth-guard';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 registerLocaleData(ru);
 
@@ -53,7 +54,8 @@ registerLocaleData(ru);
     FavoritesPageComponent,
     SearchComponent,
     VideoGridCardComponent,
-    VideoListCardComponent
+    VideoListCardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

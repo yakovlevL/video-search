@@ -20,6 +20,7 @@ export class AuthService {
   private eventAuthError: BehaviorSubject<string> = new BehaviorSubject<string>('');
   eventAuthError$ = this.eventAuthError.asObservable();
   newUser: any; // firebase.User
+  user: any;
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFirestore,
@@ -28,6 +29,16 @@ export class AuthService {
 
   getUserState(): Observable<firebase.User | null> {
     return this.afAuth.authState;
+  }
+  // Верификация Email
+  async verificationEmail(): Promise<void> {
+    (await this.afAuth.currentUser).sendEmailVerification()
+      .then(() => {
+        console.log('Mail send');
+      })
+      .catch(err => {
+        this.eventAuthError.next(err);
+      });
   }
   // login в сисему
   login(email: string, password: string): void {

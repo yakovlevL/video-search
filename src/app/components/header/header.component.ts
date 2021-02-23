@@ -36,4 +36,8 @@ export class HeaderComponent implements OnInit {
     this.auth.logout();
     this.router.navigate(['/auth', 'login']);
   }
+
+  verifyEmail(): void {
+    this.auth.verificationEmail();
+  }
 }

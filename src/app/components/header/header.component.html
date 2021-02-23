@@ -12,13 +12,17 @@
       </div>
       <div *ngIf="!user?.emailVerified">
         <strong>Verified your email!</strong>
+        <button
+          nz-button
+          nzType="primary"
+          (click)="verifyEmail()"
+        > Подтвердить почту</button>
       </div>
       <div class="logout">
         <button
           nz-button
           nzType="default"
           nz-popover
-          nzPopoverTitle="{{user?.email}}"
           [(nzPopoverVisible)]="visible"
           (nzPopoverVisibleChange)="change($event)"
           nzPopoverTrigger="click"
@@ -27,6 +31,13 @@
           {{user?.displayName}}
         </button>
         <ng-template #contentTemplate>
+          <a [routerLink]="['/profile']">{{user?.email}}</a>
+          <div *ngIf="user?.emailVerified; else emailVerified">
+            Email подтвержден
+          </div>
+          <ng-template #emailVerified>
+            Email не подтвержден
+          </ng-template>
           <a href="#" (click)="logout($event)" nz-button nzType="link">Выйти</a>
         </ng-template>
 
