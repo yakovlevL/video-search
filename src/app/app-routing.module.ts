@@ -5,6 +5,7 @@ import {HomePageComponent} from './pages/home-page/home-page.component';
 import {VideoPageComponent} from './pages/video-page/video-page.component';
 import {FavoritesPageComponent} from './pages/favorites-page/favorites-page.component';
 import {AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import {ProfileSettingsComponent} from './pages/profile-settings/profile-settings.component';
 import {ProfileComponent} from './pages/profile/profile.component';
 
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['auth', 'login']);
@@ -30,6 +31,12 @@ const routes: Routes = [
       {
         path: 'favorites',
         component: FavoritesPageComponent,
+        canActivate: [AngularFireAuthGuard],
+        data: {authGuardPipe: redirectUnauthorizedToHome}
+      },
+      {
+        path: 'profile/edit',
+        component: ProfileSettingsComponent,
         canActivate: [AngularFireAuthGuard],
         data: {authGuardPipe: redirectUnauthorizedToHome}
       },

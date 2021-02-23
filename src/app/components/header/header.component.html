@@ -6,8 +6,8 @@
           <a href="/"><i nz-icon nzType="bug" nzTheme="outline"></i></a>
         </div>
         <ul nz-menu nzTheme="light" nzMode="horizontal" class="header-nav">
-          <li nz-menu-item nzSelected [routerLink]="['/']">Поиск</li>
-          <li nz-menu-item [routerLink]="['favorites']">Избранное</li>
+          <li nz-menu-item nzSelected routerLinkActive="active" [routerLink]="['/']">Поиск</li>
+          <li nz-menu-item routerLinkActive="active" [routerLink]="['favorites']">Избранное</li>
         </ul>
       </div>
       <div *ngIf="!user?.emailVerified">
@@ -28,17 +28,16 @@
           nzPopoverTrigger="click"
           [nzPopoverContent]="contentTemplate"
         >
-          {{user?.displayName}}
+          {{user?.email}}
         </button>
         <ng-template #contentTemplate>
-          <a [routerLink]="['/profile']">{{user?.email}}</a>
-          <div *ngIf="user?.emailVerified; else emailVerified">
-            Email подтвержден
+          <a [routerLink]="['/profile']">Профиль</a>
+          <div>
+            <a
+              href="#"
+              (click)="logout($event)"
+            >Выйти</a>
           </div>
-          <ng-template #emailVerified>
-            Email не подтвержден
-          </ng-template>
-          <a href="#" (click)="logout($event)" nz-button nzType="link">Выйти</a>
         </ng-template>
 
       </div>
