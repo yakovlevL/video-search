@@ -1,0 +1,11 @@
+.profile {
+  &-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    &__block {
+      width: 50%;
+      height: 100%;
+    }
+  }
+}
