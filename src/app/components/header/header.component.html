@@ -10,21 +10,14 @@
           <li nz-menu-item routerLinkActive="active" [routerLink]="['favorites']">Избранное</li>
         </ul>
       </div>
-      <div *ngIf="!user?.emailVerified">
-        <strong>Verified your email!</strong>
-        <button
-          nz-button
-          nzType="primary"
-          (click)="verifyEmail()"
-        > Подтвердить почту</button>
-      </div>
+
       <div class="logout">
         <button
           nz-button
           nzType="default"
           nz-popover
+          nzPopoverPlacement="bottomRight"
           [(nzPopoverVisible)]="visible"
-          (nzPopoverVisibleChange)="change($event)"
           nzPopoverTrigger="click"
           [nzPopoverContent]="contentTemplate"
         >

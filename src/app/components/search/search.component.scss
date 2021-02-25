@@ -7,6 +7,7 @@
   &__switcher {
     font-size: 1.2rem;
     i {
+      margin-left: 0 !important;
       color: #bebebe;
       &:last-child {
         margin-left: .5rem;
@@ -18,16 +19,32 @@
   }
 }
 
+.active {
+  color: #000 !important;
+}
+
+.icon-heart {
+  color: #1390E5;
+}
+
 .video {
-  &-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 25%);
-    @media all and (max-width: 890px) {
-      grid-template-columns: repeat(auto-fill, 50%);
-    }
-    @media all and (max-width: 767px) {
-      grid-template-columns: repeat(auto-fill, 100%);
+  &-grid {
+    &-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 25%);
+      @media all and (max-width: 890px) {
+        grid-template-columns: repeat(auto-fill, 50%);
+      }
+      @media all and (max-width: 767px) {
+        grid-template-columns: repeat(auto-fill, 100%);
+      }
     }
   }
+  &-list {
+    &-container {
+      width: 100%;
+    }
+  }
+
 }

@@ -1,12 +1,27 @@
 <h2 nz-typography>Настройки профиля</h2>
 
-<form nz-form class="profile-form">
+<form nz-form class="profile-form" [formGroup]="form" (ngSubmit)="form">
 
   <div class="profile-form__block form-left">
     <nz-form-item>
       <nz-form-control nzErrorTip="Введите корректный адрес электронной почты">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            formControlName="username"
+            autocomplete="username"
+            type="text"
+            nz-input
+            placeholder="Username"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Введите корректный адрес электронной почты">
         <nz-input-group nzPrefixIcon="mail">
           <input
+            formControlName="email"
             autocomplete="email"
             type="text"
             nz-input
@@ -18,40 +33,38 @@
 
     <nz-form-item>
       <nz-form-control nzErrorTip="Введите корректный адрес электронной почты">
-        <nz-input-group nzPrefixIcon="mail">
+        <nz-input-group nzPrefixIcon="phone">
           <input
-            autocomplete="email"
+            formControlName="phone"
+            autocomplete="phone"
             type="text"
             nz-input
-            placeholder="E-mail"
+            placeholder="Phone"
           />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Введите корректный адрес электронной почты">
-        <nz-input-group nzPrefixIcon="mail">
-          <input
-
-            autocomplete="email"
-            type="text"
-            nz-input
-            placeholder="E-mail"
-          />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
+    <button
+      nz-button
+      class="login-form-button login-form-margin"
+      type="submit"
+      [nzType]="'primary'"
+    >
+      Сохранить
+    </button>
   </div>
 
-  <div class="profile-form__block form-right">
-    <div class="avatar">
-      <nz-avatar
-        [nzShape]="'square'"
-        [nzSize]="64"
-        [nzIcon]="'unlock'"
-      ></nz-avatar>
-    </div>
-  </div>
+  <nz-upload
+    nzType="drag"
+    [nzMultiple]="true"
+    nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    (nzChange)="uploadImg($event)"
+  >
+    <p class="ant-upload-drag-icon">
+      <i nz-icon nzType="inbox"></i>
+    </p>
+    <p class="ant-upload-text">Нажмите чтобы загрузить изображение или просто перетащите его в эту область</p>
+  </nz-upload>
 
 </form>

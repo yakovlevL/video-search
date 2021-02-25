@@ -1,27 +1,61 @@
 <div class="box">
   <h1 nz-typography>Поиск видео</h1>
 
-  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-    <input type="text" nz-input placeholder="Что хотите посмотреть" />
+  <nz-input-group nzSearch nzSize="large" [nzSuffix]="suffixIconHeart" [nzAddOnAfter]="suffixButton">
+    <input
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="getVideo(searchQuery)"
+      type="text"
+      nz-input
+      placeholder="Что хотите посмотреть"
+    />
   </nz-input-group>
+  <ng-template #suffixIconHeart>
+    <i
+      nz-icon
+      class="icon-heart"
+      nzType="heart"
+      nz-popover
+      nzPopoverTitle='Поиск сохранен в разделе "Избранное"'
+      [(nzPopoverVisible)]="visible"
+      nzPopoverTrigger="click"
+      [nzPopoverContent]="contentTemplate"
+      nzPopoverPlacement="bottom"
+    ></i>
+  </ng-template>
+
+  <ng-template #contentTemplate>
+    <a [routerLink]="['favorites']">Перейти в "Избранное"</a>
+  </ng-template>
+
   <ng-template #suffixButton>
     <button nz-button nzType="primary" nzSize="large" nzSearch>Найти</button>
   </ng-template>
 
-  <div class="filter-panel">
-    <div class="filter-panel__text">
-      <span nz-typography>Видео по запросу  «<strong>чем кормить кота</strong>»</span>
-      <span nz-typography nzType="secondary">7230</span>
+  <ng-container>
+    <div class="filter-panel">
+      <div class="filter-panel__text">
+        <span nz-typography>Видео «<strong>запрос</strong>»</span>
+        <span nz-typography nzType="secondary">7230</span>
+      </div>
+      <div class="filter-panel__switcher">
+        <button nz-button nzType="text" (click)="gridCard = true">
+          <i nz-icon nzType="appstore" [ngClass]="gridCard ? 'active' : '' " nzTheme="outline"></i>
+        </button>
+        <button nz-button nzType="text" (click)="gridCard = false">
+          <i nz-icon nzType="unordered-list" [ngClass]="gridCard ? '' : 'active' " nzTheme="outline"></i>
+        </button>
+      </div>
     </div>
-    <div class="filter-panel__switcher">
-      <i nz-icon nzType="appstore" nzTheme="outline"></i>
-      <i nz-icon nzType="unordered-list" nzTheme="outline"></i>
-    </div>
-  </div>
 
-  <div class="video-container">
-    <app-video-grid-card></app-video-grid-card>
-    <app-video-grid-card></app-video-grid-card>
-    <app-video-grid-card></app-video-grid-card>
-  </div>
+    <div [ngClass]="gridCard ? 'video-grid-container' : 'video-list-container' ">
+      <ng-container *ngIf="gridCard; else listCard">
+        <app-video-grid-card></app-video-grid-card>
+      </ng-container>
+      <ng-template #listCard>
+        <app-video-list-card></app-video-list-card>
+      </ng-template>
+    </div>
+  </ng-container>
+
 </div>

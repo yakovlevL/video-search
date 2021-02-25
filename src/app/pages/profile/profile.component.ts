@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import firebase from 'firebase';
+import {Router} from '@angular/router';
+import {AuthService} from '../../auth/auth.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  user: firebase.User;
+
+  constructor(
+    private router: Router,
+    private auth: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.auth.getUserState()
+      .subscribe(user => {
+        this.user = user;
+      });
+  }
+
+  verifyEmail(): void {
+    this.auth.verificationEmail();
   }
 
 }

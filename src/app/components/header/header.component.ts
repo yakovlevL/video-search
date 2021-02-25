@@ -29,15 +29,9 @@ export class HeaderComponent implements OnInit {
     this.visible = false;
   }
 
-  change(value: boolean): void {}
-
   logout(e: Event): void {
     e.preventDefault();
     this.auth.logout();
     this.router.navigate(['/auth', 'login']);
-  }
-
-  verifyEmail(): void {
-    this.auth.verificationEmail();
   }
 }

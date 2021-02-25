@@ -1,1 +1,30 @@
-<p>profile works!</p>
+<h2>User: </h2>
+<a [routerLink]="['edit']">Редактировать профиль</a>
+<div>
+  <strong>Username:</strong>
+  <span>{{user?.displayName}}</span>
+</div>
+
+<div>
+  <strong>Email:</strong>
+  <span>{{user?.email}}</span>
+  <span *ngIf="user?.emailVerified; else emailVerified">Email подтвержден</span>
+  <ng-template #emailVerified>Email не подтвержден</ng-template>
+  <div *ngIf="!user?.emailVerified">
+    <button
+      nz-button
+      nzType="primary"
+      (click)="verifyEmail()"
+    > Подтвердить почту</button>
+  </div>
+</div>
+
+<div>
+  <strong>Phone:</strong>
+  <span>{{user?.phoneNumber}}</span>
+</div>
+
+<div>
+  <strong>Photo:</strong>
+  <span>{{user?.photoURL}}</span>
+</div>

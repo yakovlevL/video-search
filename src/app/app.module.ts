@@ -40,6 +40,11 @@ import {NzPopoverModule} from 'ng-zorro-antd/popover';
 import {AngularFireAuthGuardModule} from '@angular/fire/auth-guard';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import {NzUploadModule} from 'ng-zorro-antd/upload';
+import {NzMessageModule} from 'ng-zorro-antd/message';
+import { FavoriteItemComponent } from './components/favorite-item/favorite-item.component';
+import {NzPageHeaderModule} from 'ng-zorro-antd/page-header';
+import {NzCollapseModule} from 'ng-zorro-antd/collapse';
 
 registerLocaleData(ru);
 
@@ -57,7 +62,8 @@ registerLocaleData(ru);
     VideoGridCardComponent,
     VideoListCardComponent,
     ProfileSettingsComponent,
-    ProfileComponent
+    ProfileComponent,
+    FavoriteItemComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +88,9 @@ registerLocaleData(ru);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireAuthGuardModule
+    AngularFireAuthGuardModule,
+    NzUploadModule,
+    NzMessageModule
   ],
   providers: [{ provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]
